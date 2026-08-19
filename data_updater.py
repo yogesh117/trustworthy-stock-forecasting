@@ -1,17 +1,18 @@
 
+### Early updater via an API. Use with caution.  DO NOT CHANGE API KEY
+
 import urllib.request
 import csv
 import io
 import pandas as pd
 from pathlib import Path
 
-symbol = 'IBM'
-api_key = 'OGLS55Q6YJLUVQPP'  
+API_KEY = 'OGLS55Q6YJLUVQPP'     #API key, do not change
 
-#api_key = 'demo'
+symbol = 'IBM'
+  
 function_call = 'TIME_SERIES_DAILY'
-#url = f'https://www.alphavantage.co/query?function={function_call}&symbol={symbol}&datatype=csv&apikey={api_key}'
-url = f'https://www.alphavantage.co/query?function={function_call}Y&symbol={symbol}&outputsize=full&datatype=csv&apikey={api_key}'
+url = f'https://www.alphavantage.co/query?function={function_call}Y&symbol={symbol}&outputsize=full&datatype=csv&apikey={API_KEY}'
 
 output = Path(__file__).parent / "data" / f"{symbol}.csv"
 
