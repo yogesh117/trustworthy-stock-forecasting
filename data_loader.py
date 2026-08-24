@@ -1,6 +1,6 @@
 # Team 2
 # Olin Dsouza (odsouza1@stevens.edu), Yogesh Patil (yp36032@stevens.edu), Kevin Gwinn (kgwinn@stevens.edu)
-# Date: 8/16/16
+# Date: 8/16/26
 # Description: Engineering Python Final Project, Trustworthy Stock Forecaster
 # File name: data_loader.py
 

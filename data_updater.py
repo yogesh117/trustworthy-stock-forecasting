@@ -1,9 +1,9 @@
 
 # Team 2
 # Olin Dsouza (odsouza1@stevens.edu), Yogesh Patil (yp36032@stevens.edu), Kevin Gwinn (kgwinn@stevens.edu)
-# Date: 8/16/16
+# Date: 8/16/26
 # Description: Engineering Python Final Project, Trustworthy Stock Forecaster
-# File name: data_loader.py
+# File name: data_updater.py
 
 """
 data_updater.py module is responsible for calling an API and getting new data from the stock market. By default it calls daily time series
@@ -20,11 +20,15 @@ it checks the request to remove to make sure that sample files are not removed.
 """
 
 import urllib.request
+import urllib.error
 import os
 import pandas as pd
 from pathlib import Path
 
-API_KEY = 'OGLS55Q6YJLUVQPP'     #API key, do not change, this key will expire 02/02/2026 (paid subscription is ending)
+#the API key is read from the environment so no secret is committed to the repository.
+#set it before running:  export ALPHAVANTAGE_API_KEY=yourkey   (Mac)  /  $env:ALPHAVANTAGE_API_KEY="yourkey"  (Windows)
+#this module is an OPTIONAL utility - the main program runs entirely from the committed sample CSVs.
+API_KEY = os.environ.get("ALPHAVANTAGE_API_KEY", "demo")
 
 def cleanup_symbols():  
     """
@@ -91,8 +95,8 @@ def add_update_symbol(symbol='AAPL'):
         if os.path.exists(temp):                           #if temp file still exists remove it from the data folder
             os.remove(temp)
  
-    except:                                                #if something goes wrong, catch the exception and notify user
-        print("something went wrong, no file created")
+    except (urllib.error.URLError, OSError, pd.errors.ParserError) as error:    #catch network/file/parse failures and notify user
+        print(f"something went wrong, no file created: {error}")
 
 def remove_symbol(symbol):
     """

@@ -129,7 +129,7 @@ class Portfolio:
             symbol: {
                 "n_days": len(asset),      #keys n_days to the number of days of data
                 "mean_return": float(asset.returns.mean()),   #calculates the average of returns and assigns to key mean_return
-                "vol": float(asset.returns.std()),   #calculate the standard deviation of volume of a stock - used later in regime calculations
+                "vol": float(asset.returns.std()),   #calculate the standard deviation of the returns of a stock - used later in regime calculations
             }
             for symbol, asset in self._assets.items()  
         }
@@ -139,6 +139,47 @@ class Portfolio:
         Overload dunder to make get the size of a portfolio (number of assets) easier
         """
         return len(self._assets)
+
+    def __add__(self, other):
+        """
+        Overload + to merge two portfolios into a new combined portfolio. If both
+        portfolios hold the same symbol, the left hand side's asset is kept.
+
+        parameters
+            other (Portfolio) portfolio to merge with
+
+        returns (Portfolio)
+            new Portfolio containing the assets of both
+        """
+        if not isinstance(other, Portfolio):    #only portfolios can be merged with +
+            return NotImplemented
+        combined = Portfolio(name=f"{self.name}+{other.name}")
+        for asset in self._assets.values():     #copy in our own assets first
+            combined.add_asset(asset)
+        for asset in other._assets.values():    #then the other portfolio's, skipping duplicates
+            if asset.symbol not in combined._assets:
+                combined.add_asset(asset)
+        return combined
+
+    def __eq__(self, other):
+        """
+        Overload == so two portfolios are equal when they hold the same symbols
+        with the same number of days of data each.
+
+        parameters
+            other (Portfolio) portfolio to compare with
+
+        returns (bool)
+            True when both portfolios hold equivalent assets
+        """
+        if not isinstance(other, Portfolio):    #comparing against anything else is undefined
+            return NotImplemented
+        if self.symbols() != other.symbols():   #must hold exactly the same symbols
+            return False
+        #every shared symbol must also have the same amount of history
+        return all(
+            len(self.get_asset(s)) == len(other.get_asset(s)) for s in self.symbols()
+        )
 
     def __str__(self):
         """
