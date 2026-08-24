@@ -11,7 +11,7 @@ AAI/CPE/EE 551 — Engineering Python | Course Project (Summer 2026) — Team 2
 | Name | Email | Stevens ID (CWID) |
 |---|---|---|
 | Olin Dsouza | odsouza1@stevens.edu | 20033076 |
-| Yogesh Patil | yp36032@stevens.edu | 20032007 |
+| Yogesh Patil | ypatel33@stevens.edu | 20032007 |
 | Kevin Gwinn | kgwinn@stevens.edu | 20017424 |
 
 ---
@@ -271,6 +271,3 @@ Bonus components beyond the required four:
 | **Kevin Gwinn** | Data pipeline (`data_loader.py`): CSV loading/cleaning, log-returns, rolling volatility, regime labeling; data acquisition utility (`data_updater.py`); `StockAssets`/`Portfolio` core (`portfolio.py`); sample dataset preparation. |
 | **Yogesh Patil** | Forecasting models (`forecasters.py`): `Forecaster` base class, random-walk and EWMA subclasses, `@require_fitted` decorator; calibration metrics (`calibration.py`): CRPS, coverage, reliability diagrams; backtesting engine (`backtest.py`); repository setup. |
 | **Olin Dsouza** | Main program (`main.ipynb`): full pipeline integration and analysis; test suite (`test_toolkit.py`, 13 cases); portfolio operator overloads (`__add__`, `__eq__`); documentation (`README.md`), dependency management (`requirements.txt`, `.gitignore`). |
-
-Each member made ≥5 meaningful commits to the shared repository (program logic, design,
-debugging, testing, data handling, and documentation).
