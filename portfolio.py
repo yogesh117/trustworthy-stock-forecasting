@@ -1,5 +1,5 @@
 # Team 2
-# Olin Dsouza (odsouza1@stevens.edu), Yogesh Patil (ypatel33@stevens.edu), Kevin Gwinn (kgwinn@stevens.edu)
+# Olin Dsouza (odsouza1@stevens.edu), Yogesh Patel (ypatel33@stevens.edu), Kevin Gwinn (kgwinn@stevens.edu)
 # Date: 8/16/26
 # Description: Engineering Python Final Project, Trustworthy Stock Forecaster
 # File name: portfolio.py
