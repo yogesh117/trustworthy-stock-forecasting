@@ -11,7 +11,7 @@ AAI/CPE/EE 551 — Engineering Python | Course Project (Summer 2026) — Team 2
 | Name | Email | Stevens ID (CWID) |
 |---|---|---|
 | Olin Dsouza | odsouza1@stevens.edu | 20033076 |
-| Yogesh Patil | ypatel33@stevens.edu | 20032007 |
+| Yogesh Patel | ypatel33@stevens.edu | 20032007 |
 | Kevin Gwinn | kgwinn@stevens.edu | 20017424 |
 
 ---
