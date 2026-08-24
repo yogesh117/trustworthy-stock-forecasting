@@ -86,6 +86,7 @@ trustworthy-stock-forecasting/
 ├── backtest.py         # Module: rolling-window split generator, backtest driver,
 │                       #   per-regime summaries, CSV export helper
 ├── test_toolkit.py     # Pytest suite — 13 test cases
+├── test_edge_cases.py  # Additional edge-case and input-validation tests (6 cases)
 ├── data/               # Committed dataset (see Data source above)
 │   ├── aapl_sample.csv  ├── msft_sample.csv  └── jpm_sample.csv
 ├── output/             # Generated at run time: metrics CSV + PNG figures
@@ -161,7 +162,7 @@ prompt).
 pytest -v
 ```
 
-Expected result: **13 passed**.
+Expected result: **19 passed**.
 
 ### Step 2 — Run the main program (Jupyter Notebook)
 
@@ -257,7 +258,7 @@ curves sit below the diagonal (over-confidence) for both models, but EWMA's sits
 | 1 | ≥2 meaningful classes with a relationship | **Inheritance:** `Forecaster` → `RandomWalkForecaster`, `EWMAForecaster` (`forecasters.py`). **Composition:** `Portfolio` is composed of `StockAssets` objects (`portfolio.py`). All have constructors, attributes, methods, and instantiated objects in `main.ipynb`. |
 | 2 | ≥2 meaningful functions | `label_regime()` (`data_loader.py`), `compute_calibration()` (`calibration.py`) — plus `crps_normal()`, `empirical_coverage()`, `run_backtest()`, and more. |
 | 3 | ≥2 advanced libraries, used critically | **NumPy** (vectorized returns/volatility/CRPS math), **Pandas** (CSV loading, time-series alignment, rolling windows, result tables), **matplotlib** (regime plots, reliability diagrams). |
-| 4 | ≥2 exception scenarios + ≥2 pytest cases | `FileNotFoundError` (missing CSV), `ValueError` (insufficient/invalid data), `TypeError` (wrong asset type), `RuntimeError` (unfitted model), `KeyError` (unknown symbol) — raised in the modules and caught/demonstrated in `main.ipynb` §1 and §3. **13 pytest cases** in `test_toolkit.py`. |
+| 4 | ≥2 exception scenarios + ≥2 pytest cases | `FileNotFoundError` (missing CSV), `ValueError` (insufficient/invalid data), `TypeError` (wrong asset type), `RuntimeError` (unfitted model), `KeyError` (unknown symbol) — raised in the modules and caught/demonstrated in `main.ipynb` §1 and §3. **19 pytest cases** in `test_toolkit.py` and `test_edge_cases.py`. |
 | 5 | Meaningful data I/O | Reads 3 CSV price files from `data/` (optionally fetches fresh data via the Alpha Vantage API in `data_updater.py`); writes `output/metrics_summary.csv` and 3 PNG figures. |
 | 6 | ≥2 loops and ≥2 if statements | Rolling-window backtest loop + per-model inner loop (`backtest.py`); per-symbol loops in `main.ipynb`; conditionals in regime labeling, interval containment, and input validation throughout. |
 | 7 | ≥2 mutable + ≥2 immutable types | Mutable: `list` (records), `dict` (reports, `Portfolio._assets`), `set` (`REGIME_LABELS`, regime sets in `summarize_by_regime`). Immutable: `float`/`int` (prices, counts), `str` (symbols, labels), `tuple` (intervals, `DEFAULT_LEVELS`, `config()`). |
@@ -290,7 +291,7 @@ Bonus components beyond the required four:
 ### Grading rubric mapping
 
 * **Program runs correctly without errors** — `main.ipynb` executes top to bottom (the
-  committed notebook contains the outputs of a full clean run); `pytest -v` → 13 passed.
+  committed notebook contains the outputs of a full clean run); `pytest -v` → 19 passed.
 * **Code structure** — logic is separated into six single-purpose modules plus a thin
   orchestration notebook.
 * **Naming & style** — snake_case functions/variables, CapWords classes, UPPER_CASE
