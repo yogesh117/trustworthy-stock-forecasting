@@ -211,6 +211,28 @@ of the main program flow.)
 
 ---
 
+## Results and discussion
+
+The rolling backtest pools 2,142 forecast-day records per model across the three symbols
+(2020-2023 daily data). Empirical coverage of the models' **90% prediction intervals**:
+
+| Model | Calm days | Volatile days | Trust gap |
+|---|---|---|---|
+| RandomWalk | 93.3% | **77.9%** | 15.4 pp |
+| EWMA (lambda=0.94) | 90.3% | **84.2%** | 6.1 pp |
+
+Two conclusions stand out:
+
+1. **Over-confidence concentrates exactly where it hurts.** On volatile days the random
+   walk's "90%" interval contains the realized return far less often than stated - a user
+   would be surprised roughly 1 day in 4.5 instead of the promised 1 in 10.
+2. **Adaptive volatility pays.** The EWMA model reacts to recent shocks, cutting the
+   calm-vs-volatile trust gap by more than half and achieving the lower overall mean CRPS
+   (0.0209). Its confidence statements are measurably more trustworthy.
+
+The reliability diagrams in `output/` show the same story graphically: the volatile-regime
+curves sit below the diagonal (over-confidence) for both models, but EWMA's sits closer.
+
 ## How the requirements are met
 
 ### Part 1 — all 10 components
