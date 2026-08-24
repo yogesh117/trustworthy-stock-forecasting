@@ -42,6 +42,31 @@ def test_portfolio_unknown_symbol_raises_keyerror():
         Portfolio(name="Empty").get_asset("AAPL")
 
 
+def test_crps_rejects_nonpositive_sigma():
+    """a zero or negative predictive sigma is not a valid distribution"""
+    from calibration import crps_normal
+    with pytest.raises(ValueError):
+        crps_normal(0.0, 0.0, 0.01)
+    with pytest.raises(ValueError):
+        crps_normal(0.0, -0.5, 0.01)
+
+
+def test_coverage_rejects_misaligned_inputs():
+    """intervals and observations of different lengths must be rejected"""
+    from calibration import empirical_coverage
+    with pytest.raises(ValueError):
+        empirical_coverage([(-1, 1), (-1, 1)], [0.0])
+    with pytest.raises(ValueError):
+        empirical_coverage([], [])
+
+
+def test_generator_rejects_too_short_series():
+    """a series shorter than one train+test window must raise a ValueError"""
+    from backtest import rolling_window_splits
+    with pytest.raises(ValueError):
+        list(rolling_window_splits(100, train_size=252, test_size=21))
+
+
 if __name__ == "__main__":    #allow the suite to run directly without the pytest CLI
     import sys
     sys.exit(pytest.main([__file__, "-v"]))
