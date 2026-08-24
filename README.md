@@ -242,6 +242,12 @@ curves sit below the diagonal (over-confidence) for both models, but EWMA's sits
 * Three symbols and one market period; results should be read as a demonstration of the
   calibration methodology, not a definitive model ranking.
 
+### Future improvements
+
+* Add heavier-tailed predictive distributions (Student-t) and compare their calibration.
+* Expand regime categories beyond calm/volatile (trend, correlation, liquidity regimes).
+* Use `data_updater.py` to refresh data on a schedule and track calibration drift live.
+
 ## How the requirements are met
 
 ### Part 1 — all 10 components
