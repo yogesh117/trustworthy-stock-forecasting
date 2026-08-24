@@ -233,6 +233,15 @@ Two conclusions stand out:
 The reliability diagrams in `output/` show the same story graphically: the volatile-regime
 curves sit below the diagonal (over-confidence) for both models, but EWMA's sits closer.
 
+### Known limitations
+
+* Both models assume a Normal predictive distribution; real daily returns have fatter
+  tails, which is part of why volatile-day coverage falls short of nominal.
+* Regime labels are computed with the benefit of the full sample's volatility threshold;
+  a fully real-time system would estimate the threshold from past data only.
+* Three symbols and one market period; results should be read as a demonstration of the
+  calibration methodology, not a definitive model ranking.
+
 ## How the requirements are met
 
 ### Part 1 — all 10 components
