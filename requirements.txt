@@ -1,0 +1,8 @@
+# Trustworthy Stock Forecaster -- project dependencies
+# Tested with Python 3.13 (works on 3.12 / 3.13 / 3.14)
+numpy>=1.26
+pandas>=2.0
+matplotlib>=3.8
+pytest>=8.0
+notebook>=7.0
+ipykernel>=6.29
