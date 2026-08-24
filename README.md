@@ -269,5 +269,5 @@ Bonus components beyond the required four:
 | Member | Main contributions |
 |---|---|
 | **Kevin Gwinn** | Data pipeline (`data_loader.py`): CSV loading/cleaning, log-returns, rolling volatility, regime labeling; data acquisition utility (`data_updater.py`); `StockAssets`/`Portfolio` core (`portfolio.py`); sample dataset preparation. |
-| **Yogesh Patil** | Forecasting models (`forecasters.py`): `Forecaster` base class, random-walk and EWMA subclasses, `@require_fitted` decorator; calibration metrics (`calibration.py`): CRPS, coverage, reliability diagrams; backtesting engine (`backtest.py`); repository setup. |
+| **Yogesh Patel** | Forecasting models (`forecasters.py`): `Forecaster` base class, random-walk and EWMA subclasses, `@require_fitted` decorator; calibration metrics (`calibration.py`): CRPS, coverage, reliability diagrams; backtesting engine (`backtest.py`); repository setup. |
 | **Olin Dsouza** | Main program (`main.ipynb`): full pipeline integration and analysis; test suite (`test_toolkit.py`, 13 cases); portfolio operator overloads (`__add__`, `__eq__`); documentation (`README.md`), dependency management (`requirements.txt`, `.gitignore`). |
